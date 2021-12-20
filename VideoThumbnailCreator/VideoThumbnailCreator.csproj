@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CB5169AD-BCD0-48C2-991D-60164A4B6976}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>VideoThumbnailCreator</RootNamespace>
+    <AssemblyName>VideoThumbnailCreator</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>video-thumbnail-creator-48b.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Excel, Version=2.1.2.3, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.5.452, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="LumenWorks.Framework.IO, Version=3.8.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\LumenWorks.Framework.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArgsHelper.cs" />
+    <Compile Include="CustomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomForm.designer.cs">
+      <DependentUpon>CustomForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExceptionHandlersHelper.cs" />
+    <Compile Include="FFMpegArgsHelper.cs" />
+    <Compile Include="FFMpegArgsHelperJoin.cs" />
+    <Compile Include="FFMPEGInfo.cs" />
+    <Compile Include="frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAbout.designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDownloadRequiredUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDownloadRequiredUpdate.Designer.cs">
+      <DependentUpon>frmDownloadRequiredUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDownloadUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDownloadUpdate.Designer.cs">
+      <DependentUpon>frmDownloadUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmError.Designer.cs">
+      <DependentUpon>frmError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportFromCSV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportFromCSV.Designer.cs">
+      <DependentUpon>frmImportFromCSV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportFromExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportFromExcel.Designer.cs">
+      <DependentUpon>frmImportFromExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLanguage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLanguage.designer.cs">
+      <DependentUpon>frmLanguage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMultipleFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMultipleFiles.Designer.cs">
+      <DependentUpon>frmMultipleFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOptions.designer.cs">
+      <DependentUpon>frmOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOutputFileAsk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOutputFileAsk.designer.cs">
+      <DependentUpon>frmOutputFileAsk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProgress.designer.cs">
+      <DependentUpon>frmProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVideoInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVideoInfo.Designer.cs">
+      <DependentUpon>frmVideoInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVideoThumbnail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVideoThumbnail.Designer.cs">
+      <DependentUpon>frmVideoThumbnail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="JoinArgsHelper.cs" />
+    <Compile Include="Module.cs" />
+    <Compile Include="NiceLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OwnerDrawnComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecentFilesHelper.cs" />
+    <Compile Include="ResFlags.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResFlags.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ResTranslate.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResTranslate.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ShareHelper.cs" />
+    <Compile Include="TimeSpanHelper.cs" />
+    <Compile Include="TimeUpDownControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TimeUpDownControl.designer.cs">
+      <DependentUpon>TimeUpDownControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TranslateHelper.cs" />
+    <Compile Include="ucTextProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ucTextProgressBar.Designer.cs">
+      <DependentUpon>ucTextProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateHelper.cs" />
+    <Compile Include="URLLinkLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VideoInfoHelper.cs" />
+    <Compile Include="VideoThumbnail.cs" />
+    <EmbeddedResource Include="CustomForm.resx">
+      <DependentUpon>CustomForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDownloadRequiredUpdate.resx">
+      <DependentUpon>frmDownloadRequiredUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDownloadUpdate.resx">
+      <DependentUpon>frmDownloadUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmError.resx">
+      <DependentUpon>frmError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImportFromCSV.resx">
+      <DependentUpon>frmImportFromCSV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImportFromExcel.resx">
+      <DependentUpon>frmImportFromExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLanguage.resx">
+      <DependentUpon>frmLanguage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMultipleFiles.resx">
+      <DependentUpon>frmMultipleFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOptions.resx">
+      <DependentUpon>frmOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOutputFileAsk.resx">
+      <DependentUpon>frmOutputFileAsk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProgress.resx">
+      <DependentUpon>frmProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVideoInfo.resx">
+      <DependentUpon>frmVideoInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVideoThumbnail.resx">
+      <DependentUpon>frmVideoThumbnail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="ResFlags.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResFlags.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResTranslate.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResTranslate.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeUpDownControl.resx">
+      <DependentUpon>TimeUpDownControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucTextProgressBar.resx">
+      <DependentUpon>ucTextProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4dots_logo_official.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4dots_logo_official_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_down_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_right_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_up_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brush2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brush4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bullet_ball_glass_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bullet_ball_glass_blue_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bullet_ball_glass_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bullet_ball_glass_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bullet_ball_glass_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cart-icon-b-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\disk_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_into.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_preferences.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\earth.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facebook-24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facebook-32.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flash1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\googleplus-24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\import1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\linkedin-24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\navigate_beginning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\navigate_end.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preferences.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twitter-24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twitter-32.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\youtube-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_albania.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_belarus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_bulgaria.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_china.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_croatia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_czech_republic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_denmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_estonia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_finland.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_france.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_georgia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_germany.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_great_britain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_greece.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_hungary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_iceland.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_india.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_indonesia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_iran.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_ireland.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_israel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_italy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_japan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_kenya.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_latvia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_lithuania.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_netherlands.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_norway.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_pakistan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_philippines.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_poland.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_portugal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_romania.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_russia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_saudi_arabia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_serbia_montenegro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_slovakia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_slovenia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_south_africa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_south_korea.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_spain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_sweden.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_taiwan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_thailand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_turkey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_ukraine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_vietnam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="video-thumbnail-creator-48b.ico" />
+    <None Include="Resources\video-thumbnail-creator-48.ico" />
+    <None Include="bin\Debug\video-thumbnail-creator-48b.ico" />
+    <Content Include="video-thumbnail-creator-48.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
